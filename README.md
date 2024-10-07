@@ -20,4 +20,4 @@ pip 21.2.4 from ...\Python310\lib\site-packages\pip (python 3.10)
 #Para mac:
 python3 -m pip install --user tcod
 
-
+Partes completas: 0,1
