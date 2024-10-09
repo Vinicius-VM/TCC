@@ -22,5 +22,5 @@ python3 -m pip install --user tcod
 
 ...
 
-Partes completas: 0,1
+Partes completas: 0,1,2
 Para saber o que alterar de inimigos: parte 2
