@@ -22,11 +22,15 @@ python3 -m pip install --user tcod
 
 ...
 
-Partes completas: 0,1,2,3,4
+Partes completas: 0,1,2,3,4,5
+
 Para saber o que alterar de inimigos: parte 2
+
 Parte da geração de mapa e como alterar: parte 3
+
 Parte do POV: 4
-partte dos monstros: 5
 
+partte dos monstros e movimento: 5
 
-Eu terminei até quase metade da 5, mais especificamente na de delimitar o máximo de monstros
+parte de ia: 6
+
