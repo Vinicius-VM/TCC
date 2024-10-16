@@ -1,12 +1,13 @@
-import tcod as libtcod
-from game_states import GameStates
-from input_handlers import handle_keys
-from fov_functions import initialize_fov, recompute_fov
-from render_functions import clear_all, render_all, RenderOrder
-from map_objects.game_map import GameMap
-from entity import Entity, get_blocking_entities_at_location
+import libtcodpy as libtcod
+
 from components.fighter import Fighter
 from death_functions import kill_monster, kill_player
+from entity import Entity, get_blocking_entities_at_location
+from fov_functions import initialize_fov, recompute_fov
+from game_states import GameStates
+from input_handlers import handle_keys
+from map_objects.game_map import GameMap
+from render_functions import clear_all, render_all, RenderOrder
 
 
 def main():
@@ -40,22 +41,25 @@ def main():
     #Aqui é para modificar o jogador
     fighter_component = Fighter(hp=30, defense=2, power=5)
     player = Entity(0, 0, '@', libtcod.white, 'Player', blocks=True, render_order=RenderOrder.ACTOR, fighter=fighter_component)
-
     entities = [player]
 
-    libtcod.console_set_custom_font('arial101x101.png', libtcod.FONT_TYPE_GREYSCALE | libtcod.FONT_LAYOUT_TCOD)
+    libtcod.console_set_custom_font('arial10x10.png', libtcod.FONT_TYPE_GREYSCALE | libtcod.FONT_LAYOUT_TCOD)
 
     libtcod.console_init_root(screen_width, screen_height, 'libtcod tutorial revised', False)
 
     con = libtcod.console_new(screen_width, screen_height)
+
     game_map = GameMap(map_width, map_height)
-    game_map.make_map(max_rooms, room_min_size, room_max_size, map_width, map_height, player, entities, max_monsters_per_room)
-    
+    game_map.make_map(max_rooms, room_min_size, room_max_size, map_width, map_height, player, entities,
+                      max_monsters_per_room)
+
     fov_recompute = True
+
     fov_map = initialize_fov(game_map)
 
     key = libtcod.Key()
     mouse = libtcod.Mouse()
+
 
     game_state = GameStates.PLAYERS_TURN
 
@@ -92,6 +96,7 @@ def main():
                     player_turn_results.extend(attack_results)
                 else:
                     player.move(dx, dy)
+
                     fov_recompute = True
 
                 game_state = GameStates.ENEMY_TURN
@@ -101,7 +106,8 @@ def main():
             return True
 
         if fullscreen:
-            libtcod.console_set_fullscreen(not libtcod.console_is_fullscreen()) 
+            libtcod.console_set_fullscreen(not libtcod.console_is_fullscreen())
+
         for player_turn_result in player_turn_results:
             message = player_turn_result.get('message')
             dead_entity = player_turn_result.get('dead')
@@ -142,11 +148,8 @@ def main():
 
                     if game_state == GameStates.PLAYER_DEAD:
                         break
-
-        else:
- 
-            game_state = GameStates.PLAYERS_TURN     
-    
+            else:
+                game_state = GameStates.PLAYERS_TURN
 
 
 if __name__ == '__main__':

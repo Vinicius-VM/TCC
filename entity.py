@@ -1,6 +1,9 @@
-import math
 import libtcodpy as libtcod
+
+import math
+
 from render_functions import RenderOrder
+
 
 class Entity:
     """
@@ -87,6 +90,7 @@ class Entity:
 
             # Delete the path to free memory
         libtcod.path_delete(my_path)
+
 
 def get_blocking_entities_at_location(entities, destination_x, destination_y):
     for entity in entities:
