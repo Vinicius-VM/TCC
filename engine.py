@@ -1,4 +1,4 @@
-import libtcodpy as libtcod
+import tcod as libtcod
 from game_states import GameStates
 from input_handlers import handle_keys
 from fov_functions import initialize_fov, recompute_fov
